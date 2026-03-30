@@ -813,7 +813,21 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
 - Try `python3 -c "import hid; print(hid.enumerate(0x04D8, 0xF372))"`
 
 **Luxafor stays blinking after Claude stops:**
-The Luxafor runs strobe animations in hardware. `cmd_static(0,0,0)` does NOT cancel an ongoing strobe. The "off"/"done" commands must send `cmd_strobe(0,0,0, repeat=1)` first.
+The Luxafor runs strobe animations autonomously in hardware. A `cmd_static(0,0,0)` does NOT cancel an ongoing strobe — the hardware ignores it. To stop it, you must send a `cmd_strobe(0,0,0, repeat=1)` which replaces the infinite strobe with a single black one.
+
+Quick fix to stop the blinking immediately:
+```bash
+python3 -c "import hid; d=hid.device(); d.open(0x04D8,0xF372); d.write([0,3,0xFF,0,0,0,1,0,1]); d.close()"
+```
+
+If your `luxafor.py` uses `cmd_static(0,0,0)` for "done"/"off", update it to:
+```python
+elif cmd == "done":
+    send(cmd_strobe(0, 0, 0, speed=1, repeat=1))
+    send(cmd_static(0, 1, 0))  # green = ready
+elif cmd == "off":
+    send(cmd_strobe(0, 0, 0, speed=1, repeat=1))
+```
 
 **RP2040: RPI-RP2 volume doesn't appear:**
 Hold BOOT before plugging in. Try a different USB-C cable (some are charge-only).
