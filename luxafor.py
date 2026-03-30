@@ -64,10 +64,12 @@ def cmd_wave(wave_type, r, g, b, speed=10, repeat=0):
 def process(cmd):
     """Traite une commande texte et l'envoie au Luxafor."""
     if cmd == "working":
-        # Bleu pulse (battement de coeur) — Claude travaille
+        # Annuler le strobe en cours, puis bleu — Claude travaille
+        send(cmd_strobe(0, 0, 0, speed=1, repeat=1))
         send(cmd_strobe(0, 0, 255, speed=20, repeat=0))
     elif cmd == "alert":
-        # Rouge clignotant rapide — attention requise
+        # Annuler le strobe en cours, puis rouge — attention requise
+        send(cmd_strobe(0, 0, 0, speed=1, repeat=1))
         send(cmd_strobe(255, 0, 0, speed=5, repeat=0))
     elif cmd.startswith("status"):
         parts = cmd.split()

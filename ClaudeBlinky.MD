@@ -287,6 +287,7 @@ If using **uv** (recommended):
     ],
     "PreToolUse": [
       {
+        "matcher": "Edit|Write|Bash|AskUserQuestion",
         "hooks": [
           {
             "type": "command",
@@ -298,6 +299,7 @@ If using **uv** (recommended):
     ],
     "PostToolUse": [
       {
+        "matcher": "Edit|Write|Bash|AskUserQuestion",
         "hooks": [
           {
             "type": "command",
@@ -713,6 +715,7 @@ Add to `~/.claude/settings.json`. Replace `BLINKY_PATH` with the absolute path t
     ],
     "PreToolUse": [
       {
+        "matcher": "Edit|Write|Bash|AskUserQuestion",
         "hooks": [
           {
             "type": "command",
@@ -724,6 +727,7 @@ Add to `~/.claude/settings.json`. Replace `BLINKY_PATH` with the absolute path t
     ],
     "PostToolUse": [
       {
+        "matcher": "Edit|Write|Bash|AskUserQuestion",
         "hooks": [
           {
             "type": "command",
