@@ -287,7 +287,6 @@ If using **uv** (recommended):
     ],
     "PreToolUse": [
       {
-        "matcher": "AskUserQuestion",
         "hooks": [
           {
             "type": "command",
@@ -299,7 +298,6 @@ If using **uv** (recommended):
     ],
     "PostToolUse": [
       {
-        "matcher": "AskUserQuestion",
         "hooks": [
           {
             "type": "command",
@@ -329,8 +327,8 @@ If using **uv** (recommended):
 | Event | Luxafor |
 |---|---|
 | You send a message | Blue strobe |
-| Claude asks a question | Red strobe |
-| You answer | Back to blue strobe |
+| Claude uses a tool (needs approval) | Red strobe |
+| Tool approved / completed | Back to blue strobe |
 | Claude is done | Green (ready) |
 
 ### Multi-terminal
@@ -715,7 +713,6 @@ Add to `~/.claude/settings.json`. Replace `BLINKY_PATH` with the absolute path t
     ],
     "PreToolUse": [
       {
-        "matcher": "AskUserQuestion",
         "hooks": [
           {
             "type": "command",
@@ -727,7 +724,6 @@ Add to `~/.claude/settings.json`. Replace `BLINKY_PATH` with the absolute path t
     ],
     "PostToolUse": [
       {
-        "matcher": "AskUserQuestion",
         "hooks": [
           {
             "type": "command",
@@ -759,8 +755,8 @@ On Windows, use `python` instead of `python3` and backslashes.
 | Event | Blinky |
 |---|---|
 | You send a message | Breathes blue |
-| Claude asks a question | Blinks red |
-| You answer | Back to breathing blue |
+| Claude uses a tool (needs approval) | Blinks red |
+| Tool approved / completed | Back to breathing blue |
 | Claude is done | Turns off |
 
 ### Multi-terminal
